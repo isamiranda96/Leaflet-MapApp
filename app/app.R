@@ -17,16 +17,16 @@ library(wesanderson)
 library(RColorBrewer)
 
 
-b <- readOGR("Bistros Saúl.kml", "Bistros Saúl")%>%
+b <- readOGR("kml data/Bistros Saúl.kml", "Bistros Saúl")%>%
     mutate(Description = "Bistros",
            Marca = "Saul")
 
-c <- readOGR("Cafes.kml", "Cafes")%>%
+c <- readOGR("kml data/Cafes.kml", "Cafes")%>%
     mutate(Description = "Cafes",
            Marca = "Saul")
 
 
-sm <- readOGR("San Martín.kml", "San Martín")%>%
+sm <- readOGR("kml data/San Martín.kml", "San Martín")%>%
     mutate(Description = ifelse(Name %like% "%Subway%" |
                                 Name %like% "%El Maestro%" |
                                 Name %like% "%Pacific%" |
@@ -34,6 +34,7 @@ sm <- readOGR("San Martín.kml", "San Martín")%>%
                                 Name %like% "%Sebastian%"
                                 , "Panaderia","Restaurante"),
            Marca = "San Martin")
+
 
 
 jet.colors <-
@@ -73,8 +74,8 @@ nuevas <- SpatialPointsDataFrame(coords = coor, data = datos, proj4string = myCR
 #---- ICONOS ----------
 
 iconos <- iconList(
-    Saul = makeIcon(iconUrl = "saul.png", iconWidth = 42, iconHeight = 65),
-    `San Martin` = makeIcon(iconUrl = "sm.png", iconWidth = 42, iconHeight = 65)
+    Saul = makeIcon(iconUrl = "imagenes/saul.png", iconWidth = 42, iconHeight = 65),
+    `San Martin` = makeIcon(iconUrl = "imagenes/sm.png", iconWidth = 42, iconHeight = 65)
 )
 
 #----------APP------------------
@@ -203,14 +204,14 @@ ui <- bootstrapPage(
                                         )
                                     )
                 )
-            ),
+            )
     
-    tabPanel("POI Data",
-             
-             div(class="outer",
-                 
-                 shiny::tags$head(includeCSS("styles.css")),
-                 leafletOutput("mapoi", width = "100%", height = "105%")
+    # tabPanel("POI Data",
+    #          
+    #          div(class="outer",
+    #              
+    #              shiny::tags$head(includeCSS("styles.css")),
+    #              leafletOutput("mapoi", width = "100%", height = "105%")
                  
                  # absolutePanel(top = 20, right=20, width = "20%",
                  #               id = "controls", class = "panel panel-default",
@@ -308,8 +309,8 @@ ui <- bootstrapPage(
                  #                      )
                  #               )
                  # )
-             )
-    )
+    #          )
+    # )
     
     
     
@@ -424,60 +425,60 @@ server <- function(input, output, session) {
     })
     
     
-    observe({
-        
-        
-        if((length(input$unidades) > 0L | length(input$unicaf) > 0L |
-            length(input$cf) > 0L | length(input$sanm) > 0L | length(input$sanm_pan) > 0L)){
-            
-            
-            sf_df <- st_as_sf(filteredData(), coords = c("lon", "lat"))
-            
-            sf_circles <- st_buffer(sf_df, dist = input$range/100)
-            
-            #sf_combined <- st_union(sf_circles)
-            
-            data <- opq(bbox = st_bbox(sf_circles)) %>%
-                #add_osm_feature(key = 'shop')%>%
-                add_osm_feature(key = 'amenity')%>%
-                osmdata_sf()
-            
-            
-            dfinal <- st_intersection(st_as_sf(data$osm_points), st_as_sf(sf_circles))%>%
-                select(Name, name, amenity, geometry)%>%
-                filter(!is.na(amenity))%>%
-                mutate(amenity = ifelse(amenity == "restaurant" |
-                                        amenity == "bank" |
-                                        amenity == "fast_food" |
-                                        amenity == "parking" |
-                                        amenity == "pharmacy" |
-                                        amenity == "cafe", amenity, "other"))
-            
-            pal <- colorFactor(rainbow(length(unique(dfinal$amenity))), unique(dfinal$amenity))
-            
-    
-            leafletProxy("mapoi", data = dfinal)%>%
-                clearMarkers()%>%
-                clearShapes()%>%
-                addCircleMarkers(label = ~as.character(paste("Nombre: ", name, "</br>",
-                                                             "Categoria: ", amenity)),
-                           labelOptions = labelOptions(clickable = TRUE),
-                           color=~pal(amenity), stroke = F, fillOpacity = 0.5, weight = 3, radius=4)%>%
-                addLegend("bottomright", pal = pal, values = ~amenity,
-                          title = "CATEGORÍA",
-                          opacity = 1)
-                
-            
-        }
-        
-        else{
-            
-            leafletProxy("mapoi")%>%
-                clearMarkers()%>%
-                clearShapes()
-        }
-        
-    })
+    # observe({
+    #     
+    #     
+    #     if((length(input$unidades) > 0L | length(input$unicaf) > 0L |
+    #         length(input$cf) > 0L | length(input$sanm) > 0L | length(input$sanm_pan) > 0L)){
+    #         
+    #         
+    #         sf_df <- st_as_sf(filteredData(), coords = c("lon", "lat"))
+    #         
+    #         sf_circles <- st_buffer(sf_df, dist = input$range/100)
+    #         
+    #         #sf_combined <- st_union(sf_circles)
+    #         
+    #         data <- opq(bbox = st_bbox(sf_circles)) %>%
+    #             #add_osm_feature(key = 'shop')%>%
+    #             add_osm_feature(key = 'amenity')%>%
+    #             osmdata_sf()
+    #         
+    #         
+    #         dfinal <- st_intersection(st_as_sf(data$osm_points), st_as_sf(sf_circles))%>%
+    #             select(Name, name, amenity, geometry)%>%
+    #             filter(!is.na(amenity))%>%
+    #             mutate(amenity = ifelse(amenity == "restaurant" |
+    #                                     amenity == "bank" |
+    #                                     amenity == "fast_food" |
+    #                                     amenity == "parking" |
+    #                                     amenity == "pharmacy" |
+    #                                     amenity == "cafe", amenity, "other"))
+    #         
+    #         pal <- colorFactor(rainbow(length(unique(dfinal$amenity))), unique(dfinal$amenity))
+    #         
+    # 
+    #         leafletProxy("mapoi", data = dfinal)%>%
+    #             clearMarkers()%>%
+    #             clearShapes()%>%
+    #             addCircleMarkers(label = ~as.character(paste("Nombre: ", name, "</br>",
+    #                                                          "Categoria: ", amenity)),
+    #                        labelOptions = labelOptions(clickable = TRUE),
+    #                        color=~pal(amenity), stroke = F, fillOpacity = 0.5, weight = 3, radius=4)%>%
+    #             addLegend("bottomright", pal = pal, values = ~amenity,
+    #                       title = "CATEGORÍA",
+    #                       opacity = 1)
+    #             
+    #         
+    #     }
+    #     
+    #     else{
+    #         
+    #         leafletProxy("mapoi")%>%
+    #             clearMarkers()%>%
+    #             clearShapes()
+    #     }
+    #     
+    # })
     
     
 }
