@@ -1,5 +1,4 @@
 library(osmdata)
-library(shiny)
 library(leaflet)
 library(rgdal)
 library(geojsonio)
@@ -12,21 +11,20 @@ library(shinyWidgets)
 library(purrr)
 library(shinythemes)
 library(shinyjs)
-library(rsconnect)
-library(wesanderson)
-library(RColorBrewer)
+#library(RColorBrewer)
+#library(dplyr)
 
 
-b <- readOGR("kml data/Bistros Saúl.kml", "Bistros Saúl")%>%
+b <- readOGR("./data/Bistros Saúl.kml", "Bistros Saúl")%>%
     mutate(Description = "Bistros",
            Marca = "Saul")
 
-c <- readOGR("kml data/Cafes.kml", "Cafes")%>%
+c <- readOGR("./data/Cafes.kml", "Cafes")%>%
     mutate(Description = "Cafes",
            Marca = "Saul")
 
 
-sm <- readOGR("kml data/San Martín.kml", "San Martín")%>%
+sm <- readOGR("./data/San Martín.kml", "San Martín")%>%
     mutate(Description = ifelse(Name %like% "%Subway%" |
                                 Name %like% "%El Maestro%" |
                                 Name %like% "%Pacific%" |
@@ -61,8 +59,8 @@ nuevas <- SpatialPointsDataFrame(coords = coor, data = datos, proj4string = myCR
 #---- ICONOS ----------
 
 iconos <- iconList(
-    Saul = makeIcon(iconUrl = "imagenes/saul.png", iconWidth = 42, iconHeight = 65),
-    `San Martin` = makeIcon(iconUrl = "imagenes/sm.png", iconWidth = 42, iconHeight = 65)
+    Saul = makeIcon(iconUrl = "./imagenes/saul.png", iconWidth = 42, iconHeight = 65),
+    `San Martin` = makeIcon(iconUrl = "./imagenes/sm.png", iconWidth = 42, iconHeight = 65)
 )
 
 #----------APP------------------
