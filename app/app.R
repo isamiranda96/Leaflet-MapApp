@@ -35,22 +35,9 @@ sm <- readOGR("kml data/San Martín.kml", "San Martín")%>%
                                 , "Panaderia","Restaurante"),
            Marca = "San Martin")
 
-
-
 jet.colors <-
     colorRampPalette(c("#00007F", "blue", "#007FFF", "cyan",
                        "#7FFF7F", "yellow", "#FF7F00", "red", "#7F0000"))
-
-
-# gt <- readOGR("guatemala-latest.osm.pbf", "points", encoding = "UTF-8")
-# 
-# 
-# gt
-# 
-# read("m_guatemala.xml")
-# 
-# ogrListLayers("guatemala-latest.osm.pbf")
-# ogrInfo("guatemala-latest.osm.pbf")
 
 
 #----------propuestas---------
