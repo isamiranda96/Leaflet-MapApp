@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="CGImap 0.8.2 (16833 thorn-03.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <relation id="67992" visible="true" version="63" changeset="84286877" timestamp="2020-04-28T19:12:05Z" user="ZeLonewolf" uid="219297">
+  <member type="node" ref="472114145" role="label"/>
+  <member type="way" ref="46141227" role="outer"/>
+  <member type="way" ref="675327232" role="outer"/>
+  <member type="way" ref="689825085" role="outer"/>
+  <member type="way" ref="669009995" role="outer"/>
+  <member type="way" ref="687983669" role="outer"/>
+  <member type="way" ref="794607321" role="outer"/>
+  <member type="way" ref="702209610" role="outer"/>
+  <member type="way" ref="690807190" role="outer"/>
+  <member type="way" ref="755765632" role="outer"/>
+  <member type="way" ref="794618370" role="outer"/>
+  <member type="way" ref="755765108" role="outer"/>
+  <member type="way" ref="699531357" role="outer"/>
+  <member type="way" ref="699531356" role="outer"/>
+  <member type="way" ref="48028916" role="outer"/>
+  <member type="way" ref="699531359" role="outer"/>
+  <member type="way" ref="687959243" role="outer"/>
+  <member type="way" ref="687959242" role="outer"/>
+  <member type="way" ref="699531361" role="outer"/>
+  <member type="way" ref="699531348" role="outer"/>
+  <member type="way" ref="692458329" role="outer"/>
+  <member type="way" ref="689777842" role="outer"/>
+  <member type="way" ref="689781753" role="outer"/>
+  <member type="way" ref="689783169" role="outer"/>
+  <member type="way" ref="689784474" role="outer"/>
+  <member type="way" ref="39405926" role="outer"/>
+  <member type="way" ref="689798266" role="outer"/>
+  <member type="way" ref="689798264" role="outer"/>
+  <member type="way" ref="666545706" role="outer"/>
+  <member type="way" ref="39405811" role="outer"/>
+  <member type="way" ref="689799532" role="outer"/>
+  <member type="way" ref="689802930" role="outer"/>
+  <member type="way" ref="689802928" role="outer"/>
+  <member type="way" ref="689802929" role="outer"/>
+  <member type="way" ref="689805335" role="outer"/>
+  <member type="way" ref="667579982" role="outer"/>
+  <member type="way" ref="327322108" role="outer"/>
+  <member type="way" ref="690324142" role="outer"/>
+  <member type="way" ref="46686060" role="outer"/>
+  <member type="way" ref="46140778" role="outer"/>
+  <member type="way" ref="46140985" role="outer"/>
+  <member type="way" ref="46140988" role="outer"/>
+  <member type="way" ref="46141014" role="outer"/>
+  <member type="way" ref="668997675" role="outer"/>
+  <member type="relation" ref="9266316" role="subarea"/>
+  <member type="relation" ref="9266317" role="subarea"/>
+  <member type="relation" ref="9266318" role="subarea"/>
+  <member type="relation" ref="9266319" role="subarea"/>
+  <member type="relation" ref="9282810" role="subarea"/>
+  <member type="relation" ref="9283360" role="subarea"/>
+  <member type="relation" ref="9283361" role="subarea"/>
+  <member type="relation" ref="9286044" role="subarea"/>
+  <member type="relation" ref="9286091" role="subarea"/>
+  <member type="relation" ref="9286092" role="subarea"/>
+  <member type="relation" ref="9305999" role="subarea"/>
+  <member type="relation" ref="9306185" role="subarea"/>
+  <member type="relation" ref="9286045" role="subarea"/>
+  <tag k="admin_level" v="6"/>
+  <tag k="boundary" v="administrative"/>
+  <tag k="name" v="Ciudad de Guatemala"/>
+  <tag k="name:de" v="Guatemala-Stadt"/>
+  <tag k="name:en" v="Guatemala City"/>
+  <tag k="type" v="boundary"/>
+  <tag k="wikidata" v="Q1555"/>
+ </relation>
+</osm>
