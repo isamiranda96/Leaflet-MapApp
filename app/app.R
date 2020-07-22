@@ -41,13 +41,13 @@ jet.colors <-
 #----------propuestas---------
 
 coor <- rbind(cbind(-90.538545, 14.593980,0), #CDP Saul
-              cbind(-90.545863, 14.562334,0), #Los Cedros
+              #cbind(-90.545863, 14.562334,0), #Los Cedros
               cbind(-90.506345, 14.651118,0)  #el zapote
               ) 
     
 
 datos <- tibble(Name = c("CDP Saul",
-                         "Los Cedros",
+                         #"Los Cedros",
                          "Mercado La Parroquia"), 
                 Description = "Cocina Fantasma",
                 Marca = "Saul")
@@ -297,8 +297,6 @@ ui <- bootstrapPage(
     #          )
     # )
     
-    
-    
         )
     )
 
@@ -349,7 +347,7 @@ server <- function(input, output, session) {
         lista4 <- input$sanm
         lista5 <- input$sanm_pan
         
-        temp <- rbind(b, c, nuevas, sm)%>%
+        temp <- rbind(b, c, sm)%>%
             filter(Name %in% lista | Name %in% lista2 | Name %in% lista3 | Name %in% lista4 
                    | Name %in% lista5)
         
@@ -377,7 +375,7 @@ server <- function(input, output, session) {
                 clearMarkers()%>%
                 clearShapes()%>%
                 addMarkers(label = ~as.character(Name),
-                           labelOptions = labelOptions(clickable = TRUE),
+                           labelOptions = labelOptions(clickable = T, noHide = T),
                            icon = ~iconos[Marca])%>%
                 addCircles(radius=input$range*1000, stroke=0,
                            fillColor = ifelse(filteredData()$Description == "Bistros","Red",
@@ -399,15 +397,15 @@ server <- function(input, output, session) {
     })
     
     
-    output$mapoi <- renderLeaflet({
-        
-        
-        leaflet()%>%
-            addTiles('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', 
-                     attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>')%>%
-            setView(lat = 14.595136, lng =  -90.511672, zoom = 12)
-        
-    })
+    # output$mapoi <- renderLeaflet({
+    #     
+    #     
+    #     leaflet()%>%
+    #         addTiles('http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png', 
+    #                  attribution='Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>')%>%
+    #         setView(lat = 14.595136, lng =  -90.511672, zoom = 12)
+    #     
+    # })
     
     
     # observe({
