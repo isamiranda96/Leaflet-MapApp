@@ -41,20 +41,24 @@ jet.colors <-
 #----------propuestas---------
 
 coor <- rbind(cbind(-90.538545, 14.593980,0), #CDP Saul
-              #cbind(-90.545863, 14.562334,0), #Los Cedros
+              cbind(-90.545863, 14.562334,0), #Los Cedros
               cbind(-90.506345, 14.651118,0)  #el zapote
               ) 
     
 
+
 datos <- tibble(Name = c("CDP Saul",
-                         #"Los Cedros",
+                         "Los Cedros",
                          "Mercado La Parroquia"), 
                 Description = "Cocina Fantasma",
                 Marca = "Saul")
 
-myCRS <- CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
+myCRS <- CRS("+proj=longlat +datum=WGS84")
 
-nuevas <- SpatialPointsDataFrame(coords = coor, data = datos, proj4string = myCRS)
+
+nuevas <- sp::SpatialPointsDataFrame(coords = coor, data = datos, proj4string = myCRS)
+
+
 
 #---- ICONOS ----------
 
@@ -347,7 +351,7 @@ server <- function(input, output, session) {
         lista4 <- input$sanm
         lista5 <- input$sanm_pan
         
-        temp <- rbind(b, c, sm)%>%
+        temp <- rbind(b, c, sm, nuevas)%>%
             filter(Name %in% lista | Name %in% lista2 | Name %in% lista3 | Name %in% lista4 
                    | Name %in% lista5)
         
